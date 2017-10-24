@@ -17,6 +17,10 @@ public class ContactBook {
         return (searchIndex(name) >= 0);
     }
 
+    public int getNumberOfContacts() {
+        return counter;
+    }
+
     // pre: !hasContact(name)
     public void addContact(String name, int phone, String email) {
         if (atCapacity()) grow();
@@ -84,4 +88,6 @@ public class ContactBook {
     public Contact next() {
         return contacts[currentContact++];
     }
+
+
 }
