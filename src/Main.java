@@ -31,6 +31,9 @@ public class Main {
                     case "LC":
                         listAllContacts(cBook);
                         break;
+                    case "BS":
+                        sortContacts(cBook);
+                        break;
                     default:
                         System.out.println("Invalid Command");
                 }
@@ -48,6 +51,7 @@ public class Main {
         System.out.println("> SP (actualiza o telefone de um dado contacto)");
         System.out.println("> SE (actualiza o e-mail de um dado contacto)");
         System.out.println("> LC (lista todos os contactos existentes na agenda)");
+        System.out.println("> BS (ordena os contactos por ordem alfabetica)");
         System.out.println("> Q (sair)");
         System.out.print("> ");
         option = in.nextLine().toUpperCase();
@@ -72,7 +76,7 @@ public class Main {
         else System.out.println("Contact already exists");
     }
 
-    public static void deleteContact(Scanner in, ContactBook cBook) {
+    private static void deleteContact(Scanner in, ContactBook cBook) {
         String name = "";
         System.out.print("Name > ");
         name = in.nextLine();
@@ -84,7 +88,7 @@ public class Main {
         }
     }
 
-    public static void getPhone(Scanner in, ContactBook cBook) {
+    private static void getPhone(Scanner in, ContactBook cBook) {
         String name = "";
         System.out.print("Name > ");
         name = in.nextLine();
@@ -94,7 +98,7 @@ public class Main {
             System.out.println("Contact does not exists.");
         }
     }
-    public static void getEmail(Scanner in, ContactBook cBook) {
+    private static void getEmail(Scanner in, ContactBook cBook) {
         String name = "";
         System.out.print("Name > ");
         name = in.nextLine();
@@ -105,7 +109,7 @@ public class Main {
         }
     }
 
-    public static void setPhone(Scanner in, ContactBook cBook) {
+    private static void setPhone(Scanner in, ContactBook cBook) {
         String name = "";
         int phone = 0;
         System.out.print("Name > ");
@@ -121,7 +125,7 @@ public class Main {
         }
 
     }
-    public static void setEmail(Scanner in, ContactBook cBook) {
+    private static void setEmail(Scanner in, ContactBook cBook) {
         String name = "";
         String email = "";
         System.out.print("Name > ");
@@ -136,7 +140,7 @@ public class Main {
         }
 
     }
-    public static void listAllContacts(ContactBook cBook) {
+    private static void listAllContacts(ContactBook cBook) {
         Contact tmp;
         if (cBook.getNumberOfContacts() > 0) {
             cBook.initializeIterator();
@@ -146,7 +150,13 @@ public class Main {
                         + tmp.getEmail() + "; " + tmp.getPhone());
             }
         } else
-            System.out.println("Contact book empty");
+            System.out.println("Contact book empty.");
+
+    }
+
+    private static void sortContacts(ContactBook cBook) {
+        cBook.bubbleSort();
+        System.out.println("Contact book sorted.");
 
     }
 

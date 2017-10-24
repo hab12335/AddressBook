@@ -70,7 +70,7 @@ public class ContactBook {
     }
 
     private void grow() {
-        Contact tmp[] = new Contact[GROWTH * contacts.length];
+        Contact[] tmp = new Contact[GROWTH * contacts.length];
         for (int i = 0; i < contacts.length; i++)
             tmp[i] = contacts[i];
         contacts = tmp;
@@ -89,5 +89,15 @@ public class ContactBook {
         return contacts[currentContact++];
     }
 
-
+    public void bubbleSort() {
+        for (int i = 1; i < counter; i++) {
+            for (int j = counter-1 ; j >= i; j--) {
+                if ((contacts[j - 1].compareTo(contacts[j])) > 0) {
+                    Contact tmp = contacts[j - 1];
+                    contacts[j - 1] = contacts[j];
+                    contacts[j] = tmp;
+                }
+            }
+        }
+    }
 }
