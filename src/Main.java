@@ -5,11 +5,13 @@ public class Main {
     public static void main(String[] args) {
         String option;
         Scanner in = new Scanner(System.in);
+        ContactBook cBook = new ContactBook();
         do {
             option = readCommand(in);
             if (!option.equals("Q")) {
                 switch (option) {
                     case "AC":
+                        addContact(in, cBook);
                         break;
                     case "RC":
                         break;
@@ -27,7 +29,6 @@ public class Main {
                         System.out.println("Comando Desconhecido");
                 }
             }
-
         } while (!option.equals("Q"));
         in.close();
     }
@@ -42,7 +43,38 @@ public class Main {
         System.out.println("> SE (actualiza o e-mail de um dado contacto)");
         System.out.println("> LC (lista todos os contactos existentes na agenda)");
         System.out.println("> Q (sair)");
+        System.out.print("> ");
         option = in.nextLine().toUpperCase();
         return option;
+    }
+
+    private static void addContact(Scanner in, ContactBook cBook) {
+        String name = "";
+        String email = "";
+        int phone = 0;
+        System.out.print("Name > ");
+        name = in.nextLine();
+        System.out.print("Phone > ");
+        phone = in.nextInt();
+        in.nextLine();
+        System.out.print("Email > ");
+        email = in.nextLine();
+        if (!cBook.hasContact(name)) {
+            cBook.addContact(name, phone, email);
+            System.out.println("Contact added");
+        }
+        else System.out.println("Contact already exists");
+    }
+
+    public static void deleteContact(Scanner in, ContactBook cBook) {
+        String name = "";
+        System.out.println("Name > ");
+        name = in.nextLine();
+        if (cBook.hasContact(name)) {
+            cBook.deleteContact(name);
+            System.out.println("Contact removed.");
+        } else {
+            System.out.println("Contact does not exists.");
+        }
     }
 }

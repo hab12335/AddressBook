@@ -28,11 +28,12 @@ public class Contact {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-
+// pre: otherContact != null
     public boolean equals(Contact otherContact) {
         return this.name.equals(otherContact.getName());
     }
 
+// pre: otherContact != null
     public int compareTo(Contact otherContact) {
         return this.name.compareTo(otherContact.getName());
     }
