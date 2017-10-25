@@ -22,9 +22,9 @@ public class ContactBook {
     }
 
     // pre: !hasContact(name)
-    public void addContact(String name, int phone, String email) {
+    public void addContact(Contact newContact) {
         if (this.atCapacity()) this.grow();
-        contacts[counter++] = new Contact(name, phone, email);
+        contacts[counter++] = newContact;
     }
 
     // pre: hasContact(name)

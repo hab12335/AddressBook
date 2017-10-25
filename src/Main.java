@@ -20,7 +20,7 @@ public class Main {
     private static final String EMAIL_PROMPT = "Email " + PROMPT;
 
     //STRINGS
-    private static final String INVALID_COMMAND = "Invalid Command";
+    private static final String INVALID_COMMAND = "Invalid Command.";
     private static final String CONTACT_ADDED = "Contact added.";
     private static final String CONTACT_ALREADY_EXISTS = "Contact already exists.";
     private static final String CONTACT_REMOVED = "Contact removed.";
@@ -92,15 +92,19 @@ public class Main {
         String name = "";
         String email = "";
         int phone = 0;
-        System.out.print(NAME_PROMPT);
-        name = in.nextLine();
+        do {
+            System.out.print(NAME_PROMPT);
+            name = in.nextLine();
+        } while (name.equals(""));
         System.out.print(PHONE_PROMPT);
         phone = in.nextInt();
         in.nextLine();
-        System.out.print(EMAIL_PROMPT);
-        email = in.nextLine();
+        do {
+            System.out.print(EMAIL_PROMPT);
+            email = in.nextLine();
+        } while (email.equals(""));
         if (!cBook.hasContact(name)) {
-            cBook.addContact(name, phone, email);
+            cBook.addContact(new Contact(name, phone, email));
             System.out.println(CONTACT_ADDED);
         }
         else System.out.println(CONTACT_ALREADY_EXISTS);
@@ -108,8 +112,10 @@ public class Main {
 
     private static void deleteContact(Scanner in, ContactBook cBook) {
         String name = "";
-        System.out.print(NAME_PROMPT);
-        name = in.nextLine();
+        do {
+            System.out.print(NAME_PROMPT);
+            name = in.nextLine();
+        } while (name.equals(""));
         if (cBook.hasContact(name)) {
             cBook.deleteContact(name);
             System.out.println(CONTACT_REMOVED);
@@ -120,8 +126,10 @@ public class Main {
 
     private static void getPhone(Scanner in, ContactBook cBook) {
         String name = "";
-        System.out.print(NAME_PROMPT);
-        name = in.nextLine();
+        do {
+            System.out.print(NAME_PROMPT);
+            name = in.nextLine();
+        } while (name.equals(""));
         if (cBook.hasContact(name)) {
             System.out.println(cBook.getPhone(name));
         } else {
@@ -130,8 +138,10 @@ public class Main {
     }
     private static void getEmail(Scanner in, ContactBook cBook) {
         String name = "";
-        System.out.print(NAME_PROMPT);
-        name = in.nextLine();
+        do {
+            System.out.print(NAME_PROMPT);
+            name = in.nextLine();
+        } while (name.equals(""));
         if (cBook.hasContact(name)) {
             System.out.println(cBook.getEmail(name));
         } else {
@@ -142,8 +152,10 @@ public class Main {
     private static void setPhone(Scanner in, ContactBook cBook) {
         String name = "";
         int phone = 0;
-        System.out.print(NAME_PROMPT);
-        name = in.nextLine();
+        do {
+            System.out.print(NAME_PROMPT);
+            name = in.nextLine();
+        } while (name.equals(""));
         if (cBook.hasContact(name)) {
             System.out.print(PHONE_PROMPT);
             phone = in.nextInt();
@@ -158,8 +170,10 @@ public class Main {
     private static void setEmail(Scanner in, ContactBook cBook) {
         String name = "";
         String email = "";
-        System.out.print(NAME_PROMPT);
-        name = in.nextLine();
+        do {
+            System.out.print(NAME_PROMPT);
+            name = in.nextLine();
+        } while (name.equals(""));
         if (cBook.hasContact(name)) {
             System.out.print(EMAIL_PROMPT);
             email = in.nextLine();
