@@ -16,8 +16,8 @@ public class Main {
     //PROMPTS
     private static final String PROMPT = "> ";
     private static final String NAME_PROMPT = "Name " + PROMPT;
-    private static final String PHONE_PROMPT = "Phone " + PROMPT;;
-    private static final String EMAIL_PROMPT = "Email " + PROMPT;;
+    private static final String PHONE_PROMPT = "Phone " + PROMPT;
+    private static final String EMAIL_PROMPT = "Email " + PROMPT;
 
     //STRINGS
     private static final String INVALID_COMMAND = "Invalid Command";
@@ -72,6 +72,7 @@ public class Main {
 
     private static String readCommand(Scanner in) {
         String option;
+        System.out.println("=======================================================");
         System.out.println("> AC (adiciona um contacto)");
         System.out.println("> RC (remove um contacto)");
         System.out.println("> GP (consulta o telefone de um contacto)");
@@ -81,6 +82,7 @@ public class Main {
         System.out.println("> LC (lista todos os contactos existentes na agenda)");
         System.out.println("> BS (ordena os contactos por ordem alfabetica)");
         System.out.println("> Q (sair)");
+        System.out.println("=======================================================");
         System.out.print(PROMPT);
         option = in.nextLine().toUpperCase();
         return option;
