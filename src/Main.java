@@ -96,14 +96,14 @@ public class Main {
             System.out.print(NAME_PROMPT);
             name = in.nextLine();
         } while (name.equals(""));
-        System.out.print(PHONE_PROMPT);
-        phone = in.nextInt();
-        in.nextLine();
-        do {
-            System.out.print(EMAIL_PROMPT);
-            email = in.nextLine();
-        } while (email.equals(""));
         if (!cBook.hasContact(name)) {
+            System.out.print(PHONE_PROMPT);
+            phone = in.nextInt();
+            in.nextLine();
+            do {
+                System.out.print(EMAIL_PROMPT);
+                email = in.nextLine();
+            } while (email.equals(""));
             cBook.addContact(new Contact(name, phone, email));
             System.out.println(CONTACT_ADDED);
         }

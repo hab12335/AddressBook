@@ -29,6 +29,7 @@ public class ContactBook {
 
     // pre: hasContact(name)
     public void deleteContact(String name) {
+        // TODO ?????? poque a ordem não interessa?
         contacts[searchIndex(name)] = contacts[counter - 1];
         counter--;
     }
@@ -55,13 +56,10 @@ public class ContactBook {
     }
 
     private int searchIndex(String name) {
-        int i = 0;
         int result = -1;
-        while ((i < counter) && result == -1) {
+        for (int i = 0; (i < counter && result == -1); i++)
             if (contacts[i].getName().equals(name))
                 result = i;
-            i++;
-        }
         return result;
     }
 
