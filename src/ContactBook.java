@@ -23,7 +23,7 @@ public class ContactBook {
 
     // pre: !hasContact(name)
     public void addContact(String name, int phone, String email) {
-        if (atCapacity()) grow();
+        if (this.atCapacity()) this.grow();
         contacts[counter++] = new Contact(name, phone, email);
     }
 
@@ -91,7 +91,7 @@ public class ContactBook {
 
     public void bubbleSort() {
         for (int i = 1; i < counter; i++) {
-            for (int j = counter-1 ; j >= i; j--) {
+            for (int j = counter-1; j >= i; j--) {
                 if ((contacts[j - 1].compareTo(contacts[j])) > 0) {
                     Contact tmp = contacts[j - 1];
                     contacts[j - 1] = contacts[j];

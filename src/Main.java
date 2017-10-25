@@ -2,43 +2,71 @@ import java.util.Scanner;
 
 public class Main {
 
+    // MENU OPTIONS
+    private static final String Q = "Q";
+    private static final String AC = "AC";
+    private static final String RC = "RC";
+    private static final String GP = "GP";
+    private static final String GE = "GE";
+    private static final String SP = "SP";
+    private static final String SE = "SE";
+    private static final String LC = "LC";
+    private static final String BS = "BS";
+
+    //PROMPTS
+    private static final String PROMPT = "> ";
+    private static final String NAME_PROMPT = "Name " + PROMPT;
+    private static final String PHONE_PROMPT = "Phone " + PROMPT;;
+    private static final String EMAIL_PROMPT = "Email " + PROMPT;;
+
+    //STRINGS
+    private static final String INVALID_COMMAND = "Invalid Command";
+    private static final String CONTACT_ADDED = "Contact added.";
+    private static final String CONTACT_ALREADY_EXISTS = "Contact already exists.";
+    private static final String CONTACT_REMOVED = "Contact removed.";
+    private static final String CANNOT_REMOVE_CONTACT = "Cannot remove contact.";
+    private static final String CONTACT_DOES_NOT_EXISTS = "Contact does not exists.";
+    private static final String CONTACT_UPDATED = "Contact updated.";
+    private static final String CONTACT_BOOK_EMPTY = "Contact book empty.";
+    private static final String CONTACT_BOOK_SORTED = "Contact book sorted.";
+
     public static void main(String[] args) {
         String option;
         Scanner in = new Scanner(System.in);
         ContactBook cBook = new ContactBook();
         do {
             option = readCommand(in);
-            if (!option.equals("Q")) {
+            if (!option.equals(Q)) {
                 switch (option) {
-                    case "AC":
+                    case AC:
                         addContact(in, cBook);
                         break;
-                    case "RC":
+                    case RC:
                         deleteContact(in, cBook);
                         break;
-                    case "GP":
+                    case GP:
                         getPhone(in, cBook);
                         break;
-                    case "GE":
+                    case GE:
                         getEmail(in, cBook);
                         break;
-                    case "SP":
+                    case SP:
                         setPhone(in, cBook);
                         break;
-                    case "SE":
+                    case SE:
                         setEmail(in, cBook);
                         break;
-                    case "LC":
+                    case LC:
                         listAllContacts(cBook);
                         break;
-                    case "BS":
+                    case BS:
                         sortContacts(cBook);
                         break;
                     default:
-                        System.out.println("Invalid Command");
+                        System.out.println(INVALID_COMMAND);
                 }
             }
-        } while (!option.equals("Q"));
+        } while (!option.equals(Q));
         in.close();
     }
 
@@ -53,7 +81,7 @@ public class Main {
         System.out.println("> LC (lista todos os contactos existentes na agenda)");
         System.out.println("> BS (ordena os contactos por ordem alfabetica)");
         System.out.println("> Q (sair)");
-        System.out.print("> ");
+        System.out.print(PROMPT);
         option = in.nextLine().toUpperCase();
         return option;
     }
@@ -62,87 +90,87 @@ public class Main {
         String name = "";
         String email = "";
         int phone = 0;
-        System.out.print("Name > ");
+        System.out.print(NAME_PROMPT);
         name = in.nextLine();
-        System.out.print("Phone > ");
+        System.out.print(PHONE_PROMPT);
         phone = in.nextInt();
         in.nextLine();
-        System.out.print("Email > ");
+        System.out.print(EMAIL_PROMPT);
         email = in.nextLine();
         if (!cBook.hasContact(name)) {
             cBook.addContact(name, phone, email);
-            System.out.println("Contact added");
+            System.out.println(CONTACT_ADDED);
         }
-        else System.out.println("Contact already exists");
+        else System.out.println(CONTACT_ALREADY_EXISTS);
     }
 
     private static void deleteContact(Scanner in, ContactBook cBook) {
         String name = "";
-        System.out.print("Name > ");
+        System.out.print(NAME_PROMPT);
         name = in.nextLine();
         if (cBook.hasContact(name)) {
             cBook.deleteContact(name);
-            System.out.println("Contact removed.");
+            System.out.println(CONTACT_REMOVED);
         } else {
-            System.out.println("Cannot remove contact.");
+            System.out.println(CANNOT_REMOVE_CONTACT);
         }
     }
 
     private static void getPhone(Scanner in, ContactBook cBook) {
         String name = "";
-        System.out.print("Name > ");
+        System.out.print(NAME_PROMPT);
         name = in.nextLine();
         if (cBook.hasContact(name)) {
             System.out.println(cBook.getPhone(name));
         } else {
-            System.out.println("Contact does not exists.");
+            System.out.println(CONTACT_DOES_NOT_EXISTS);
         }
     }
     private static void getEmail(Scanner in, ContactBook cBook) {
         String name = "";
-        System.out.print("Name > ");
+        System.out.print(NAME_PROMPT);
         name = in.nextLine();
         if (cBook.hasContact(name)) {
             System.out.println(cBook.getEmail(name));
         } else {
-            System.out.println("Contact does not exists.");
+            System.out.println(CONTACT_DOES_NOT_EXISTS);
         }
     }
 
     private static void setPhone(Scanner in, ContactBook cBook) {
         String name = "";
         int phone = 0;
-        System.out.print("Name > ");
+        System.out.print(NAME_PROMPT);
         name = in.nextLine();
         if (cBook.hasContact(name)) {
-            System.out.print("Phone > ");
+            System.out.print(PHONE_PROMPT);
             phone = in.nextInt();
             in.nextLine();
             cBook.setPhone(name, phone);
-            System.out.println("Contact updated.");
+            System.out.println(CONTACT_UPDATED);
         } else {
-            System.out.println("Contact does not exists.");
+            System.out.println(CONTACT_DOES_NOT_EXISTS);
         }
 
     }
     private static void setEmail(Scanner in, ContactBook cBook) {
         String name = "";
         String email = "";
-        System.out.print("Name > ");
+        System.out.print(NAME_PROMPT);
         name = in.nextLine();
         if (cBook.hasContact(name)) {
-            System.out.print("Email > ");
+            System.out.print(EMAIL_PROMPT);
             email = in.nextLine();
             cBook.setEmail(name, email);
-            System.out.println("Contact updated.");
+            System.out.println(CONTACT_UPDATED);
         } else {
-            System.out.println("Contact does not exists.");
+            System.out.println(CONTACT_DOES_NOT_EXISTS);
         }
 
     }
     private static void listAllContacts(ContactBook cBook) {
-        Contact tmp;
         if (cBook.getNumberOfContacts() > 0) {
+            Contact tmp;
             cBook.initializeIterator();
             while (cBook.hasNext()) {
                 tmp = cBook.next();
@@ -150,13 +178,13 @@ public class Main {
                         + tmp.getEmail() + "; " + tmp.getPhone());
             }
         } else
-            System.out.println("Contact book empty.");
+            System.out.println(CONTACT_BOOK_EMPTY);
 
     }
 
     private static void sortContacts(ContactBook cBook) {
         cBook.bubbleSort();
-        System.out.println("Contact book sorted.");
+        System.out.println(CONTACT_BOOK_SORTED);
 
     }
 
