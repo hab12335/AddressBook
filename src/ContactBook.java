@@ -30,8 +30,7 @@ public class ContactBook {
     // pre: hasContact(name)
     public void deleteContact(String name) {
         // TODO ?????? poque a ordem não interessa?
-        contacts[searchIndex(name)] = contacts[counter - 1];
-        counter--;
+        contacts[searchIndex(name)] = contacts[counter--];
     }
 
     // pre: hasContact(name)

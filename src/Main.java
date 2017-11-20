@@ -37,37 +37,41 @@ public class Main {
         do {
             option = readCommand(in);
             if (!option.equals(Q)) {
-                switch (option) {
-                    case AC:
-                        addContact(in, cBook);
-                        break;
-                    case RC:
-                        deleteContact(in, cBook);
-                        break;
-                    case GP:
-                        getPhone(in, cBook);
-                        break;
-                    case GE:
-                        getEmail(in, cBook);
-                        break;
-                    case SP:
-                        setPhone(in, cBook);
-                        break;
-                    case SE:
-                        setEmail(in, cBook);
-                        break;
-                    case LC:
-                        listAllContacts(cBook);
-                        break;
-                    case BS:
-                        sortContacts(cBook);
-                        break;
-                    default:
-                        System.out.println(INVALID_COMMAND);
-                }
+                executeCommand(option, in, cBook);
             }
         } while (!option.equals(Q));
         in.close();
+    }
+
+    private static void executeCommand(String option, Scanner in, ContactBook cBook) {
+        switch (option) {
+            case AC:
+                addContact(in, cBook);
+                break;
+            case RC:
+                deleteContact(in, cBook);
+                break;
+            case GP:
+                getPhone(in, cBook);
+                break;
+            case GE:
+                getEmail(in, cBook);
+                break;
+            case SP:
+                setPhone(in, cBook);
+                break;
+            case SE:
+                setEmail(in, cBook);
+                break;
+            case LC:
+                listAllContacts(cBook);
+                break;
+            case BS:
+                sortContacts(cBook);
+                break;
+            default:
+                System.out.println(INVALID_COMMAND);
+        }
     }
 
     private static String readCommand(Scanner in) {
